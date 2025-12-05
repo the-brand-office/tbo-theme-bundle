@@ -1,0 +1,26 @@
+{
+    "name": "raven/raven-theme-bundle",
+    "description": "Ein Bundle zur Nutzung des Themes raven 5",
+    "type": "contao-bundle",
+    "version": "0.1.2",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Markus Fischer",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "contao/core-bundle": "^4.13 || ^5.3",
+		"twbs/bootstrap": "^5.3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Raven\\RavenThemeBundle\\": "src/"
+        }
+    },
+    "extra": {
+        "contao-manager-plugin": "Raven\\RavenThemeBundle\\ContaoManager\\Plugin"
+    }
+}

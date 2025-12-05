@@ -1,0 +1,28 @@
+FMD:
+    raven: 'Raven-Theme Module'
+    logo:
+        - Logo-Bild
+        - 'Erzeugt ein Logo-Bild für die Navigationsleiste'
+    filtered_root_page_dependend_modules:
+        - 'Gefilterte startseitenabhängige Module'
+        - 'Erzeugt je nach Website-Startpunkt verschiedene Module und filtert die Anzeige nach Seiten mit verschiedenen Modi'
+tl_module:
+    ravenInvert:
+        - 'Invertieren'
+        - 'Das Modul wird auf den gewählten Seiten NICHT angezeigt, auf allen anderen schon.'
+    ravenInherit:
+        - 'Vererben'
+        - 'Die Auswahl wird auf alle Unterseiten vererbt (gilt auch für Invertierung, falls gewählt)'
+    ravenUrl:
+        - 'Link'
+        - 'Link für das Logo. Leer lassen, um auf die Startseite der aktiven Wurzel zu verlinken.'
+tl_page:
+    structured_search:
+        - 'google Sitelinks-Search-Box-Daten ausgeben'
+        - 'Strukturierte Daten werden im Quellcode der tartseite generiert.'
+    search_url:
+        - 'Interne Seite mit Suchmaschine'
+        - ''
+    is_homepage:
+        - 'Startseite'
+        - 'Markiert diese Seite als die aktuelle Startseite dieses Website-Startpunkts. Das Feld wird automatisch vom System verwaltet.'

@@ -1,0 +1,14 @@
+# Raven/RavenThemeBundle/config/services.yml
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        
+    #Geben Sie dem Listener einen eindeutigen Namen
+    Raven\RavenThemeBundle\EventListener\DataContainer\ModuleCustomizer: ~
+    
+    Raven\RavenThemeBundle\EventListener\GenerateSymlinksListener: ~
+    
+    Raven\RavenThemeBundle\EventListener\ParseTemplateListener: ~
+    
+    Raven\RavenThemeBundle\EventListener\PageListener: ~

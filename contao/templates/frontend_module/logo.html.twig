@@ -1,0 +1,16 @@
+{% extends "@Contao/frontend_module/_base.html.twig" %}
+{% use "@Contao/component/_figure.html.twig" %}
+
+{% block content %}
+    {% if not image %}
+        {# Link wrapping text #}
+        {% block text_link %}
+            <a{{ attrs(link_attributes|default) }}>Platzhalter-Logo</a>
+        {% endblock %}
+    {% else %}
+        {# Link wrapping a figure #}
+        {% block image_link %}
+            {% with {figure: image} %}{{ block('figure_component') }}{% endwith %}
+        {% endblock %}
+    {% endif %}
+{% endblock %}

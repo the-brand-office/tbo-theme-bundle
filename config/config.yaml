@@ -1,0 +1,10 @@
+# Raven/RavenThemeBundle/config/config.yml
+
+twig:
+    # Registriert einen neuen Namespace für Twig
+    paths:
+        # Fügen Sie den relativen Pfad zu Ihrem Template-Ordner hinzu, 
+        # der die base.html.twig enthält.
+        # WICHTIG: Verwenden Sie hier einen eindeutigeren Namen, z.B. @RavenGlobal
+        # Wenn der Ordner "global" heißt:
+        '%kernel.project_dir%/vendor/raven/raven-theme-bundle/contao/templates': Raven_Global

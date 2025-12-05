@@ -1,0 +1,11 @@
+# Raven/RavenThemeBundle/config/services.yml
+services:
+    _defaults:
+        autoconfigure: true
+        
+    Raven\RavenThemeBundle\EventListener\DataContainer\ModuleCustomizer: ~
+
+    # Ihre Klasse, die AbstractExtension erweitert
+    Raven\RavenThemeBundle\Twig\RavenExtension:
+        tags: ['twig.extension'] # <-- DIESER TAG IST ZWINGEND FÜR TWIG-FUNKTIONEN
+        

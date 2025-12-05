@@ -1,0 +1,18 @@
+# /translations/contao_modules.en.yaml
+FMD:
+    logo:
+        - 'Logo Image'
+        - 'Inserts a logo image for usage in navigation bar'
+    filtered_root_page_dependend_modules:
+        - 'Filtered root page dependand modules'
+        - 'Integrate a module for each root page and filter the display state on specifc pages in various modes'
+tl_module:
+    ravenInvert:
+        - 'Invert'
+        - 'The module will NOT be shown on the selected pages.'
+    ravenInherit:
+        - 'Inherit'
+        - 'The selection will be inherited to all children (also the invertion, if selected).'
+    ravenUrl:
+        - 'Link'
+        - 'Link for the logo-image. Leave empty to link homepage of the related root.'
