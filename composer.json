@@ -1,6 +1,6 @@
 {
-    "name": "raven/raven-theme-bundle",
-    "description": "Ein Bundle zur Nutzung des Themes raven 5",
+    "name": "tbo/tbo-theme-bundle",
+    "description": "Ein Bundle zur Nutzung des Themes tbo",
     "type": "contao-bundle",
     "version": "0.1.2",
     "license": "MIT",
@@ -13,14 +13,14 @@
     "require": {
         "php": ">=8.1",
         "contao/core-bundle": "^4.13 || ^5.3",
-		"twbs/bootstrap": "^5.3.8"
+        "twbs/bootstrap": "^5.3.8"
     },
     "autoload": {
         "psr-4": {
-            "Raven\\RavenThemeBundle\\": "src/"
+            "Tbo\\TboThemeBundle\\": "src/"
         }
     },
     "extra": {
-        "contao-manager-plugin": "Raven\\RavenThemeBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Tbo\\TboThemeBundle\\ContaoManager\\Plugin"
     }
 }

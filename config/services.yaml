@@ -1,11 +1,15 @@
-# Raven/RavenThemeBundle/config/services.yml
 services:
     _defaults:
+        autowire: true
         autoconfigure: true
-        
-    Raven\RavenThemeBundle\EventListener\DataContainer\ModuleCustomizer: ~
+        public: false
 
-    # Ihre Klasse, die AbstractExtension erweitert
-    Raven\RavenThemeBundle\Twig\RavenExtension:
-        tags: ['twig.extension'] # <-- DIESER TAG IST ZWINGEND FÜR TWIG-FUNKTIONEN
-        
+    Tbo\TboThemeBundle\:
+        resource: "../src/"
+        exclude:
+            - "../src/DependencyInjection/"
+            - "../src/ContaoManager/"
+            - "../src/TboThemeBundle.php"
+
+    Tbo\TboThemeBundle\Twig\TboExtension:
+        tags: ["twig.extension"]

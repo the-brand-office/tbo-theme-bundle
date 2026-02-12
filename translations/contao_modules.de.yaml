@@ -1,5 +1,5 @@
 FMD:
-    raven: 'Raven-Theme Module'
+    tbo: 'Tbo-Theme Module'
     logo:
         - Logo-Bild
         - 'Erzeugt ein Logo-Bild für die Navigationsleiste'
@@ -7,13 +7,13 @@ FMD:
         - 'Gefilterte startseitenabhängige Module'
         - 'Erzeugt je nach Website-Startpunkt verschiedene Module und filtert die Anzeige nach Seiten mit verschiedenen Modi'
 tl_module:
-    ravenInvert:
+    tboInvert:
         - 'Invertieren'
         - 'Das Modul wird auf den gewählten Seiten NICHT angezeigt, auf allen anderen schon.'
-    ravenInherit:
+    tboInherit:
         - 'Vererben'
         - 'Die Auswahl wird auf alle Unterseiten vererbt (gilt auch für Invertierung, falls gewählt)'
-    ravenUrl:
+    tboUrl:
         - 'Link'
         - 'Link für das Logo. Leer lassen, um auf die Startseite der aktiven Wurzel zu verlinken.'
 tl_page:

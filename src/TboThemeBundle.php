@@ -1,11 +1,11 @@
 <?php
-// src/RavenThemeBundle.php
+// src/TboThemeBundle.php
 
-namespace Raven\RavenThemeBundle;
+namespace Tbo\TboThemeBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class RavenThemeBundle extends Bundle
+class TboThemeBundle extends Bundle
 {
     public function getPath(): string
     {

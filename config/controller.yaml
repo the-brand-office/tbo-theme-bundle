@@ -1,9 +1,2 @@
-# Raven/RavenThemeBundle/config/services.yml
+﻿# This file is intentionally empty as services are discovered via services.yaml
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        
-    # Registrierung der Frontend-Module-Controller
-    Raven\RavenThemeBundle\Controller\FrontendModule\LogoController: ~
-    Raven\RavenThemeBundle\Controller\FrontendModule\FilteredRootPageDependendModulesController: ~

@@ -1,14 +1,2 @@
-# Raven/RavenThemeBundle/config/services.yml
+﻿# This file is intentionally empty as services are discovered via services.yaml
 services:
-    _defaults:
-        autowire: true
-        autoconfigure: true
-        
-    #Geben Sie dem Listener einen eindeutigen Namen
-    Raven\RavenThemeBundle\EventListener\DataContainer\ModuleCustomizer: ~
-    
-    Raven\RavenThemeBundle\EventListener\GenerateSymlinksListener: ~
-    
-    Raven\RavenThemeBundle\EventListener\ParseTemplateListener: ~
-    
-    Raven\RavenThemeBundle\EventListener\PageListener: ~
