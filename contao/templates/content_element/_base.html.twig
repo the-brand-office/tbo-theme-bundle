@@ -1,6 +1,5 @@
 {% extends "@Contao/content_element/_base.html.twig" %}
 
-{% if data.ptable == 'tl_content' %}
-    {% set attributes = attrs(attributes|default).addClass(getGridClassFromGroup(data.pid)) %}
-	{# dump(getGridClassFromGroup(data.pid)) #}
-{% endif %}
+{% block attributes %}
+    {{ attrs(parent()).addClass(getTboGridClasses(data)) }}
+{% endblock %}
