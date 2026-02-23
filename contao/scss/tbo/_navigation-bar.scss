@@ -1,0 +1,202 @@
+/*
+ * Contao Theme SCSS: Hybrid Sticky Navigation (nav_default.html5 compatible)
+ *
+ * * KORRIGIERT: Fügt .no-transition Helper-Klasse hinzu, um JS-Messungen zu stabilisieren.
+ */
+
+/* ------------------ 1. SCSS VARIABLEN (DEFAULTS) ------------------ */
+
+$nav-header-padding-initial: 1.5rem 2rem !default;
+$nav-header-padding-scrolled: 0.5rem 2rem !default;
+$nav-logo-width-initial: 160px !default;
+$nav-logo-width-scrolled: 100px !default;
+$nav-background-color: #fff !default;
+$nav-background-color-scrolled: rgba(255, 255, 255, 0.95) !default;
+$nav-border-bottom: 1px solid var(--bs-border-color) !default;
+$nav-box-shadow-scrolled: 0 4px 6px rgba(0, 0, 0, 0.1) !default;
+
+
+/* ------------------ 2. HEADER BASIS & SCHRUMPF-STEUERUNG ------------------ */
+
+.navigation-bar {
+    position: relative; // Standard: Im Fluss (wird durch Wrapper gehalten)
+    width: 100%;
+    z-index: 1000;
+    background-color: $nav-background-color;
+    border-bottom: $nav-border-bottom;
+    
+    padding: $nav-header-padding-initial; 
+    transition: padding 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+
+    &.is-fixed {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    &.is-scrolled {
+        padding: $nav-header-padding-scrolled;
+        background-color: $nav-background-color-scrolled;
+        box-shadow: $nav-box-shadow-scrolled;
+
+        .logo {
+            width: $nav-logo-width-scrolled;
+        }
+    }
+    
+    &.no-transition {
+        transition: none !important;
+        
+        .logo {
+            transition: none !important;
+        }
+        
+    }
+
+    .inside {
+         width: 100%;
+         display: flex; 
+         justify-content: space-between;
+         align-items: center;
+    }
+
+    .logo {
+        width: $nav-logo-width-initial;
+        transition: width 0.3s ease-in-out;
+        flex-shrink: 0;
+		
+		figure {
+			margin:0;
+		}
+        
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    /* ------------------ NAVIGATION STYLES (Unverändert) ------------------ */
+    
+    .nav-main { 
+        display: none; 
+        
+        --bs-dropdown-min-width: #{$dropdown-min-width};
+        --bs-dropdown-padding-x: #{$dropdown-padding-x};
+        --bs-dropdown-padding-y: #{$dropdown-padding-y};
+        --bs-dropdown-bg: #{$dropdown-bg};
+        --bs-dropdown-border-color: #{$dropdown-border-color};
+        --bs-dropdown-border-radius: #{$dropdown-border-radius};
+        --bs-dropdown-box-shadow: #{$dropdown-box-shadow};
+        --bs-dropdown-link-color: #{$dropdown-link-color};
+        --bs-dropdown-link-hover-color: #{$dropdown-link-hover-color};
+        --bs-dropdown-link-hover-bg: #{$dropdown-link-hover-bg};
+        --bs-dropdown-link-active-color: #{$dropdown-link-active-color};
+        --bs-dropdown-link-active-bg: #{$dropdown-link-active-bg};
+        --bs-dropdown-item-padding-x: #{$dropdown-item-padding-x};
+        --bs-dropdown-item-padding-y: #{$dropdown-item-padding-y};
+
+        @include media-breakpoint-up(nav) { 
+            display: block; 
+            
+            .level_1 { 
+                display: flex; 
+                align-items: stretch;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+
+                & > li {
+                    & > a,
+                    & > strong {
+                        color: var(--bs-link-color);
+                        text-decoration: none;
+                        font-weight: 500;
+                        padding: 0.5rem 0.75rem;
+                        display: flex;
+                        align-items: center;
+                        transition: color 0.15s ease-in-out;
+                    }
+
+                    & > a:hover,
+                    & > a:focus {
+                        color: var(--bs-link-hover-color);
+                    }
+
+                    & > strong.active {
+                         color: var(--bs-primary);
+                         cursor: default;
+                    }
+                }
+            }
+        }
+    }
+
+    /* ------------------ DROPDOWN STYLING (Unverändert) ------------------ */
+
+    .nav-main { 
+        .level_1 li.submenu { 
+            position: relative;
+            
+            & > .level_2,
+            .level_2 li.submenu > .level_3 { 
+                display: block; 
+                list-style: none;
+                padding: var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);
+                margin: 0;
+                background-color: var(--bs-dropdown-bg);
+                border: 1px solid var(--bs-dropdown-border-color);
+                border-radius: var(--bs-dropdown-border-radius);
+                box-shadow: var(--bs-dropdown-box-shadow);
+                min-width: var(--bs-dropdown-min-width);
+                position: absolute;
+                z-index: 20; 
+                visibility: hidden;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+
+                li { width: 100%; }
+
+                li a,
+                li strong {
+                    display: block;
+                    padding: var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);
+                    color: var(--bs-dropdown-link-color);
+                    text-decoration: none;
+                    border-radius: 0.25rem;
+                    transition: background-color 0.15s ease-in-out;
+                }
+
+                li a:hover,
+                li a:focus {
+                    background-color: var(--bs-dropdown-link-hover-bg); 
+                    color: var(--bs-dropdown-link-hover-color); 
+                }
+                
+                li strong.active {
+                     background-color: var(--bs-dropdown-link-active-bg);
+                     color: var(--bs-dropdown-link-active-color);
+                }
+            }
+
+            & > .level_2 { left: 0; top: 100%; }
+            .level_2 li.submenu > .level_3 { top: 0; left: 100%; margin-left: 0.5rem; }
+            
+            &:hover > .level_2,
+            &:focus-within > .level_2,
+            &.is-active > .level_2 { 
+                visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s;
+            }
+
+            .level_2 li.submenu {
+                &:hover > .level_3,
+                &:focus-within > .level_3,
+                &.is-active > .level_3 {
+                    visibility: visible; opacity: 1; pointer-events: auto; transition-delay: 0s;
+                }
+            }
+        }
+    }
+}

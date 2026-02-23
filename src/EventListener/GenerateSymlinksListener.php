@@ -5,6 +5,7 @@ use Contao\CoreBundle\Event\GenerateSymlinksEvent;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Finder\Finder;
 #[AsEventListener(ContaoCoreEvents::GENERATE_SYMLINKS)]
 class GenerateSymlinksListener
 {
@@ -12,11 +13,51 @@ class GenerateSymlinksListener
     public function __construct(LoggerInterface $contaoCoreLogger) { $this->logger = $contaoCoreLogger; $this->filesystem = new Filesystem(); }
     public function __invoke(GenerateSymlinksEvent $event): void
     {
-        $sourcePathCss = "vendor/twbs/bootstrap/scss"; $targetPathCss = "files/theme/scss/bootstrap"; $targetDirCss = dirname($targetPathCss);
-        $sourcePathJs = "vendor/twbs/bootstrap/dist/js"; $targetPathJs = "files/theme/js/bootstrap"; $targetDirJs = dirname($targetPathJs);
-        if (!$this->filesystem->exists($targetDirCss)) { try { $this->filesystem->mkdir($targetDirCss, 0777); } catch (\Exception $e) { $this->logger->error(sprintf("FEHLER: Zielverzeichnis konnte nicht erstellt werden: %s. Fehler: %s", $targetDirCss, $e->getMessage())); return; } }
-        if ($this->filesystem->exists($sourcePathCss)) $event->addSymlink($sourcePathCss, $targetPathCss);
-        if (!$this->filesystem->exists($targetDirJs)) { try { $this->filesystem->mkdir($targetDirJs, 0777); } catch (\Exception $e) { $this->logger->error(sprintf("FEHLER: Zielverzeichnis konnte nicht erstellt werden: %s. Fehler: %s", $targetDirJs, $e->getMessage())); return; } }
-        if ($this->filesystem->exists($sourcePathJs)) $event->addSymlink($sourcePathJs, $targetPathJs);
+        $targetPathScss = "files/theme/scss";
+        $targetPathJs = "files/theme/js";
+
+        // Pre-create base directories
+        foreach ([$targetPathScss, $targetPathJs] as $dir) {
+            if (!$this->filesystem->exists($dir)) {
+                try {
+                    $this->filesystem->mkdir($dir, 0777);
+                } catch (\Exception $e) {
+                    $this->logger->error(sprintf("FEHLER: Zielverzeichnis konnte nicht erstellt werden: %s. Fehler: %s", $dir, $e->getMessage()));
+                }
+            }
+        }
+
+        // Bootstrap Symlinks
+        $sourcePathBootstrapScss = "vendor/twbs/bootstrap/scss";
+        $targetPathBootstrapScss = $targetPathScss . "/bootstrap";
+        if ($this->filesystem->exists($sourcePathBootstrapScss)) $event->addSymlink($sourcePathBootstrapScss, $targetPathBootstrapScss);
+
+        $sourcePathBootstrapJs = "vendor/twbs/bootstrap/dist/js";
+        $targetPathBootstrapJs = $targetPathJs . "/bootstrap";
+        if ($this->filesystem->exists($sourcePathBootstrapJs)) $event->addSymlink($sourcePathBootstrapJs, $targetPathBootstrapJs);
+
+        // Symlink for TBO core SCSS files
+        $sourcePathTboScss = "vendor/tbo/tbo-theme-bundle/contao/scss/tbo";
+        $targetPathTboScss = $targetPathScss . "/tbo";
+        if ($this->filesystem->exists($sourcePathTboScss)) $event->addSymlink($sourcePathTboScss, $targetPathTboScss);
+
+        // Copy custom SCSS templates if they don't exist
+        $sourcePathCustomScss = "vendor/tbo/tbo-theme-bundle/contao/scss/custom";
+        
+        if ($this->filesystem->exists($sourcePathCustomScss)) {
+            $finder = new Finder();
+            $finder->files()->in($sourcePathCustomScss);
+            
+            foreach ($finder as $file) {
+                $targetFile = $targetPathScss . "/" . $file->getFilename();
+                if (!$this->filesystem->exists($targetFile)) {
+                    try {
+                        $this->filesystem->copy($file->getRealPath(), $targetFile);
+                    } catch (\Exception $e) {
+                        $this->logger->error(sprintf("FEHLER: SCSS-Vorlage konnte nicht kopiert werden: %s. Fehler: %s", $file->getFilename(), $e->getMessage()));
+                    }
+                }
+            }
+        }
     }
 }

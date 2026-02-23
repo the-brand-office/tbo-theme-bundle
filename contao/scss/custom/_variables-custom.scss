@@ -1,0 +1,19 @@
+//hier definieren wir nur Variablen, die wir anders benötigen in Bezug auf den tbo-theme-standard
+// Siehe unter files bootstrap/_variables.scss für die Defaults zum Anpassen
+
+$enable-grid-classes: false;
+$enable-cssgrid: true;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  nav: 992px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+
+//muss ganz unten importiert werden, da frühere Definitionen zählen
+@import "variables-tbo";

@@ -1,0 +1,14 @@
+//hier definieren wir nur Variablen, die wir änders wollen in Bezug auf den Bootstrap-standard
+
+$enable-grid-classes: false;
+$enable-cssgrid: true;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  nav: 992px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);

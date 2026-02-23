@@ -1,0 +1,79 @@
+//zunächst wird unsere custom-Version von bootstrap importiert
+@import "bootstrap-tbo-lcp";
+@import "navigation-bar";
+
+/******
+Jetzt definieren wir für unser Layout spezifische Bereiche und können Bootstrap-Variablen, Mixins und Funktionen nutzen. 
+Und per @extend verwenden. Ebenso natürlich eigene Variablen.
+******/
+
+.header-top-bar {
+	.inside {
+		@extend .container;
+		display: flex;
+		justify-content: flex-end;
+	}
+}
+
+.navigation-bar {
+	.inside {
+		@extend .container;
+	}
+}
+
+//#wrapper {}
+
+//#hero {}
+
+#main .mod_article {
+	>*:not(.full-wrapper) {
+		@extend .container;
+	}
+
+	>*.full-wrapper {
+		@extend .container;
+	}
+}
+
+// extends der global sections hier wegen der Includes...
+footer {
+	.inside {
+		@extend .container;
+	}
+}
+
+
+// New TBO Grid System
+.grid {
+	// Loop for breakpoints
+	// Pattern: .tbo-grid-auto-{bp}-{i} > * { grid-column: span $i; }
+
+	// XS (treated as default/base)
+	@for $i from 1 through 12 {
+		&:where(.tbo-grid-auto-xs-#{$i})>* {
+			grid-column: span $i;
+		}
+	}
+
+	$breakpoints: (
+		sm: sm,
+		md: md,
+		lg: lg,
+		xl: xl,
+		xxl: xxl
+	);
+
+@each $bp-name, $bp-value in $breakpoints {
+	@include media-breakpoint-up($bp-value) {
+		@for $i from 1 through 12 {
+			&:where(.tbo-grid-auto-#{$bp-name}-#{$i})>* {
+				grid-column: span $i;
+			}
+		}
+	}
+}
+}
+
+/**** 
+Weitere Abschnitte: Siehe main.scss
+}****/

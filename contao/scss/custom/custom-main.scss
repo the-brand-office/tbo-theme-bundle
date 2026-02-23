@@ -1,0 +1,13 @@
+/******
+Hinweis: In dieser Datei werden nur Styles angepasst/erweitert, die für den "largest contentfull paint" NICHT nötig sind, also alles was fü
+erstspäter nötig ist. Alles zuvor Wichtige gehört in die "custom-lcp.scss"
+******/
+
+//zunächst wird unsere tbo-Version importiert
+@import "tbo/main-tbo";
+
+
+/******
+Jetzt definieren wir für unser Layout spezifische Dinge nach Belieben und können Bootstrap-Variablen, Mixins und Funktionen nutzen. 
+Und per @extend verwenden. Ebenso natürlich eigene Variablen.
+******/

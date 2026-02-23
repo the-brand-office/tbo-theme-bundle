@@ -1,8 +1,7 @@
 {
     "name": "tbo/tbo-theme-bundle",
-    "description": "Ein Bundle zur Nutzung des Themes tbo",
+    "description": "Ein Bundle zur Nutzung des tbo-Themes",
     "type": "contao-bundle",
-    "version": "0.1.2",
     "license": "MIT",
     "authors": [
         {
