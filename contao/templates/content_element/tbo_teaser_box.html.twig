@@ -1,0 +1,45 @@
+{% extends "@Contao/block_searchable" %}
+
+{% block content %}
+    <div class="tbo-teaser-box {{ class }}" {{ attributes|raw }}>
+        {% block headline %}
+            {% if headline %}
+                <{{ hl }}>{{ headline }}</{{ hl }}>
+            {% endif %}
+        {% endblock %}
+
+        {% block icon %}
+            {% if tbo_add_icon and tbo_icon %}
+                <div class="icon-wrapper">
+                    <i class="{{ tbo_icon }}"></i>
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block image %}
+            {% if addImage and singleSRC %}
+                <div class="image-wrapper">
+                    {{ contao_figure(singleSRC, size, {metadata: overwriteMeta ? {title: imageTitle, alt: alt, caption: caption} : null, options: {floatClass: floating, href: imageUrl, fullsize: fullsize}}) }}
+                </div>
+            {% endif %}
+        {% endblock %}
+        
+        {% block text %}
+            {% if text %}
+                <div class="text-wrapper">
+                    {{ text|raw }}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block button %}
+            {% if tbo_add_button and url %}
+                <div class="button-wrapper">
+                    <a href="{{ url }}" class="tbo-btn element-button"{% if target %} target="_blank"{% endif %}{% if titleText %} title="{{ titleText }}"{% endif %}>
+                        {{ linkTitle|default(url) }}
+                    </a>
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

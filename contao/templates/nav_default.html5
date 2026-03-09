@@ -1,0 +1,10 @@
+
+<ul class="<?= $this->level ?> nav">
+  <?php foreach ($this->items as $item): ?>
+    <?php if ($item['isActive']): ?>
+      <li class="<?= $item['class'] ?> nav-item"><strong class="<?= $item['class'] ?> nav-link" aria-current="page"<?php if (!empty($item['subitems'])): ?> aria-haspopup="true"<?php endif; ?>><?= $item['link'] ?></strong><?= $item['subitems'] ?? '' ?></li>
+    <?php else: ?>
+      <li<?php if ($item['class'] || true): ?> class="<?= $item['class'] ?> nav-item"<?php endif; ?>><a href="<?= $item['href'] ?>" title="<?= $item['pageTitle'] ?: $item['title'] ?>"<?php if ($item['class'] || true): ?> class="<?= $item['class'] ?> nav-link"<?php endif; ?><?php if ('' !== $item['accesskey']): ?> accesskey="<?= $item['accesskey'] ?>"<?php endif; ?><?= $item['target'] ?><?= $item['rel'] ?? '' ?><?php if (!empty($item['subitems'])): ?> aria-haspopup="true"<?php endif; ?>><?= $item['link'] ?></a><?= $item['subitems'] ?? '' ?></li>
+    <?php endif; ?>
+  <?php endforeach; ?>
+</ul>

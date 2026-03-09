@@ -1,0 +1,4 @@
+<?php
+
+	$jsTimestamp = filemtime($this->rootDir.'files/theme/js/navigation-bar.js');
+	$GLOBALS['TL_JAVASCRIPT'][] = 'files/theme/js/navigation-bar.js|async|static|'. $jsTimestamp ;

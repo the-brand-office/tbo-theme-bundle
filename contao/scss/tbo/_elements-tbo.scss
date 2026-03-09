@@ -1,0 +1,108 @@
+// Standard HTML Elements mapping to Bootstrap classes
+
+// Tables
+// Base style for all tables
+table {
+    @extend .table !optional;
+}
+
+// Pass through modifier classes from Contao wrappers (ce_table)
+.ce_table {
+    @extend .table-responsive !optional;
+
+    &.table-striped table {
+        @extend .table-striped !optional;
+    }
+
+    &.table-bordered table {
+        @extend .table-bordered !optional;
+    }
+
+    &.table-hover table {
+        @extend .table-hover !optional;
+    }
+
+    &.table-sm table {
+        @extend .table-sm !optional;
+    }
+}
+
+// Images
+// Base style for all images in main content
+#main img {
+    @extend .img-fluid !optional;
+}
+
+// Forms
+// Map standard fields to form-control
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select,
+textarea {
+    @extend .form-control !optional;
+}
+
+// Buttons
+// Map buttons and submits to primary buttons
+button,
+input[type="submit"],
+.button {
+    @extend .btn !optional;
+    @extend .btn-primary !optional; // Default look
+
+    // Handle modifiers from wrapper or button itself
+    &.btn-lg {
+        @extend .btn-lg !optional;
+    }
+
+    &.btn-sm {
+        @extend .btn-sm !optional;
+    }
+
+    &.btn-outline-primary {
+        @extend .btn-outline-primary !optional;
+    }
+}
+
+// Layout & Elements Width (Content Elements inside Articles)
+// Direct children get container width by default
+#main .mod_article>* {
+    // Basis ist der normale Container
+    @extend .container !optional;
+
+    // Style-Manager: Volle Breite (ersetzt den Container mit Container-Fluid Verhalten)
+    &.width-fluid {
+        max-width: 100% !important;
+        @extend .container-fluid !optional;
+    }
+
+    // Style-Manager: 80% Breite ab Tablet
+    &.width-80 {
+        @include media-breakpoint-up(md) {
+            max-width: 80% !important;
+        }
+    }
+
+    // Style-Manager: 60% Breite ab Desktop (auf Tablet 80%)
+    &.width-60 {
+        @include media-breakpoint-up(lg) {
+            max-width: 60% !important;
+        }
+
+        @include media-breakpoint-only(md) {
+            max-width: 80% !important;
+        }
+    }
+}

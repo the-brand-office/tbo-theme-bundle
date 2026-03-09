@@ -1,0 +1,139 @@
+<?php
+	global $objPage;
+	$rootPageModel = \Contao\PageModel::findByPk($objPage->rootId);
+?>
+
+
+<?php $this->extend('fe_page') ?>
+<?php if ($objPage->is_homepage) {$this->class .= ' index-page';} else {$this->class .= ' no-index-page';} ?>
+<?php if (!$this->sections['hero']) $this->class .=" no-hero" ; ?>	
+
+    <?php $this->block('meta'); ?>
+		<meta name="robots" content="<?= $this->robots ?>">
+		<meta name="description" content="<?= $this->description ?>">
+		<meta name="keywords" content="<?= $this->keywords ?>">
+		<meta name="generator" content="Contao CMS - www.thebrandoffice.de">
+	 
+		<meta property="og:title" content="<?= $this->pageTitle; ?><?php if ($this->mainTitle) : ?> - <?= $this->mainTitle; ?><?php endif; ?>" />
+		<meta property="og:description" content="<?php echo $this->description; ?>" />
+		<meta property="og:url" content="{{env::url}}/{{env::request}}" />
+		<meta name="twitter:card" content="<?php echo $this->description; ?>">
+		<meta name="twitter:title" content="<?= $this->pageTitle; ?><?php if ($this->mainTitle) : ?> - <?= $this->mainTitle; ?><?php endif; ?>">
+		<meta name="twitter:url" content="{{env::url}}/{{env::request}}">
+		<meta name="twitter:card" content="summary">
+	  <?php if(isset($GLOBALS['og:image'])) : ?>
+		<meta property="og:image" content="<?= $GLOBALS['og:image'] ?>" /> 
+		<meta name="twitter:image" content="<?= $GLOBALS['og:image'] ?>" /> 
+	  <?php else : ?>
+		<meta property="og:image" content="{{env::url}}/files/bilder/favicon.png" /> 
+		<meta property="twitter:image" content="{{env::url}}/files/bilder/favicon.png" />
+	 <?php endif; ?>
+	<?php if ($rootPageModel->structured_search) :?>
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "WebSite",
+		  "url": "{{env::url}}",
+		  "potentialAction": {
+			"@type": "SearchAction",
+			"target": "{{env::url}}/{{link_url::<?= $rootPageModel->search_url ?>}}?keywords={search_term_string}",
+			"query-input": "required name=search_term_string"
+		  }
+		}
+		</script>
+	<?php endif; ?>
+	
+		<?php 
+		
+		// --- PHP-LOGIK ZUR ERMITTLUNG DES CACHE-BUSTERS ---
+		$path = 'files/theme/css/main.css';
+		$versionQuery = '';
+
+		// FilesModel anhand des Pfades suchen
+		$fileModel = \Contao\FilesModel::findByPath($path);
+
+		if ($fileModel) {
+			// Die Modification Time (tstamp) als Cache-Busting-Parameter setzen
+			$versionQuery = '?v=' . $fileModel->tstamp;
+		}
+
+		// Der endgültige, gebustete Pfad (wird für das Twig-Rendering verwendet)
+		$bustedPath = $path . $versionQuery;
+		// --- ENDE PHP-LOGIK ---
+		
+		
+		?>
+		
+		<link rel="preload" as="style" href="<?= $bustedPath ?>" onload="this.onload=null;this.rel='stylesheet'">
+		<noscript><link rel="stylesheet" href="$bustedPath"></noscript>
+   <?php $this->endblock(); ?>
+   
+         
+<?php 
+/* Set Classes for usage of right and/or left column */
+	$classColumns = "";
+	if ($this->right) {
+		$classColumns = "right-only";
+	}
+	if ($this->left) {
+		$classColumns = "left-only";
+	}
+	if ($this->right && $this->left) {
+		$classColumns = "left-right";
+	}
+?>	
+
+	<?php $this->block('header'); ?>
+	<?php $headerBarContent = $this->sections['header-bar'] ?? null ?>
+		<?php if ($headerBarContent): ?>	
+			<div class="header-top-bar">
+				<div class="inside">
+					<?= $headerBarContent; ?>
+				</div>
+			</div>
+		<?php endif; ?>
+		
+		<?php if ($this->header): ?>
+          <header id="header" class="navigation-bar">
+            <div class="inside">
+              <?= $this->header ?>
+            </div>
+          </header>
+        <?php endif; ?>
+    <?php $this->endblock(); ?>
+	  
+	<?php $this->block('container'); ?>
+        <div id="container"<?php if($classColumns) : ?> class="<?= $classColumns?>"<?php endif; ?>>
+
+		   <main id="main">
+			 <div class="inside">
+			   <?= $this->main ?>
+			 </div>
+			 <?php $this->sections('main'); ?>
+		   </main>
+
+		   <?php if ($this->left): ?>
+			 <aside id="left">
+			   <div class="inside">
+				 <?= $this->left ?>
+			   </div>
+			 </aside>
+		   <?php endif; ?>
+
+		   <?php if ($this->right): ?>
+			 <aside id="right">
+			   <div class="inside">
+				 <?= $this->right ?>
+			   </div>
+			 </aside>
+		   <?php endif; ?>
+
+        </div>
+     <?php $this->endblock(); ?>
+
+
+<?php 
+	$this->dumpTemplateVars(); 
+	if(isset($debug) && \Contao\System::getContainer()->getParameter('kernel.debug')) dump($debug);
+?>
+

@@ -1,0 +1,6 @@
+<?php
+
+// Fügt das JavaScript für die Barrierefreiheit der Desktop-Hauptnavigation am Ende des <body> ein
+$GLOBALS['TL_BODY'][] = '<script src="bundles/tbotheme/js/nav-main.js" defer></script>';
+
+?>

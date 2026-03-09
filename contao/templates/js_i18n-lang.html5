@@ -1,0 +1,38 @@
+<?php
+
+// i18n / A11y Übersetzungen für JavaScript
+// Dieses Template wird im Seitenlayout eingebunden und MUSS VOR den nav-Skripten geladen werden.
+// Kann pro Website im eigenen templates/-Ordner überschrieben/erweitert werden.
+
+$strLangCode = $GLOBALS['TL_LANGUAGE'] ?? 'de';
+
+// Standard-Fallback (Deutsch)
+$strOpenText     = 'Menü';
+$strOpen         = 'Hauptnavigation öffnen';
+$strCloseText    = 'Schließen';
+$strClose        = 'Hauptnavigation schließen';
+$strExpandButton = 'Untermenü erweitern';
+$strSkipToContent = 'Zum Inhalt springen';
+$strBackToTop    = 'Zum Seitenanfang springen';
+
+if ($strLangCode === 'en') {
+    $strOpenText     = 'Menu';
+    $strOpen         = 'Open main navigation';
+    $strCloseText    = 'Close';
+    $strClose        = 'Close main navigation';
+    $strExpandButton = 'Expand submenu';
+    $strSkipToContent = 'Skip to content';
+    $strBackToTop    = 'Jump to top';
+}
+
+$GLOBALS['TL_HEAD'][] = '<script>
+const i18n_a11y = {
+    openNav: "' . addslashes($strOpen) . '",
+    closeNav: "' . addslashes($strClose) . '",
+    openNavText: "' . addslashes($strOpenText) . '",
+    closeNavText: "' . addslashes($strCloseText) . '",
+    submenuExpand: "' . addslashes($strExpandButton) . '",
+    skipToContent: "' . addslashes($strSkipToContent) . '",
+    backToTop: "' . addslashes($strBackToTop) . '"
+};
+</script>';

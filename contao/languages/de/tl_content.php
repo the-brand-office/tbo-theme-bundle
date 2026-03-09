@@ -40,3 +40,17 @@ foreach ($breakpoints as $bp) {
         "Dieses Element erhält explizit diese Breite ab Breakpoint $bp."
     ];
 }
+
+// TBO Elemente
+$GLOBALS['TL_LANG']['tl_content']['tbo_icon'] = ['Icon', 'Bitte wählen Sie ein Icon aus.'];
+
+// TBO Content Elements CEs
+$GLOBALS['TL_LANG']['tl_content']['tbo_text_icon'] = ['Text mit Icon', 'Erzeugt ein Textelement mit einem Icon.'];
+$GLOBALS['TL_LANG']['tl_content']['tbo_link_icon'] = ['Hyperlink mit Icon', 'Erzeugt einen Link mit einem Icon.'];
+$GLOBALS['TL_LANG']['tl_content']['tbo_teaser_box'] = ['Teaser-Box (Universal)', 'Universal-Element mit Bild, Icon und Button Optionen.'];
+
+$GLOBALS['TL_LANG']['tl_content']['tbo_add_icon'] = ['Ein Icon hinzufügen', 'Dem Element ein Icon hinzufügen.'];
+$GLOBALS['TL_LANG']['tl_content']['tbo_add_button'] = ['Einen Button hinzufügen', 'Dem Element einen Button (Hyperlink) hinzufügen.'];
+$GLOBALS['TL_LANG']['tl_content']['tbo_element_width'] = ['Element-Breite (Layout)', 'Wählen Sie hier eine spezielle Breite für dieses Element aus. (Greift nur, wenn das Element nicht verschachtelt ist)'];
+$GLOBALS['TL_LANG']['tl_content']['button_legend'] = 'Button-Einstellungen';
+$GLOBALS['TL_LANG']['tl_content']['icon_legend'] = 'Icon-Einstellungen';

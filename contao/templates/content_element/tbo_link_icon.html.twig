@@ -1,0 +1,18 @@
+{% extends "@Contao/block_searchable" %}
+
+{% block content %}
+    <div class="tbo-link-icon {{ class }}" {{ attributes|raw }}>
+        {% if headline %}
+            <{{ hl }}>{{ headline }}</{{ hl }}>
+        {% endif %}
+
+        <div class="link-wrapper">
+            <a href="{{ url }}" title="{{ linkTitle }}"{% if target %} {{ target }}{% endif %}{% if titleText %} title="{{ titleText }}"{% endif %}>
+                {% if tbo_icon %}
+                    <i class="{{ tbo_icon }}"></i>
+                {% endif %}
+                <span class="link-text">{{ linkTitle }}</span>
+            </a>
+        </div>
+    </div>
+{% endblock %}

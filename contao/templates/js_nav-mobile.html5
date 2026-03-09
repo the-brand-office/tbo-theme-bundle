@@ -1,0 +1,6 @@
+<?php
+
+// Fügt das JavaScript für die Barrierefreiheit der mobilen Navigation am Ende des <body> ein
+$GLOBALS['TL_BODY'][] = '<script src="bundles/tbotheme/js/nav-mobile.js" defer></script>';
+
+?>
