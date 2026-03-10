@@ -1,6 +1,10 @@
 <?php
 
+$jsPath = 'bundles/tbotheme/js/nav-main.js';
+$jsFile = $this->rootDir . '/public/' . $jsPath;
+$jsTimestamp = file_exists($jsFile) ? filemtime($jsFile) : time();
+
 // Fügt das JavaScript für die Barrierefreiheit der Desktop-Hauptnavigation am Ende des <body> ein
-$GLOBALS['TL_BODY'][] = '<script src="bundles/tbotheme/js/nav-main.js" defer></script>';
+$GLOBALS['TL_BODY'][] = '<script src="' . $jsPath . '?v=' . $jsTimestamp . '" defer></script>';
 
 ?>

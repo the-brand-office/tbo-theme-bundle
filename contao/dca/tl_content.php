@@ -89,7 +89,7 @@ $GLOBALS['TL_DCA']['tl_content']['fields']['tbo_icon'] = [
     'label' => &$GLOBALS['TL_LANG']['tl_content']['tbo_icon'],
     'exclude' => true,
     'inputType' => 'rocksolid_icon_picker',
-    'eval' => ['tl_class' => 'w50'],
+    'eval' => ['tl_class' => 'w50', 'iconFont' => \Contao\Config::get('tbo_icon_font_path') ?: 'bundles/tbotheme/fonts/icons/tbo-icons.svg'],
     'sql' => "varchar(255) NOT NULL default ''"
 ];
 

@@ -4,7 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // mit Fokus auf WCAG-konforme Barrierefreiheit (ARIA, ESC-Taste, Fokus).
 
     const nav = document.querySelector('#nav-mobile');
-    if (!nav) return;
+
+    if (!nav) {
+        return;
+    }
 
     const hasI18n = typeof i18n_a11y !== 'undefined';
     let isOpened = false;
@@ -57,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     nav.classList.add('is-enabled');
     nav.setAttribute('aria-hidden', 'true');
 
-    let navMobileOpenButton = document.querySelector('.navigation-bar-inner .nav-mobile-open');
+    let navMobileOpenButton = document.querySelector('#header .nav-mobile-open');
 
     const setupOpenButton = (button) => {
         button.setAttribute('aria-controls', nav.id);
@@ -81,8 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
         navMobileOpenButton = document.createElement('button');
         if (hasI18n) navMobileOpenButton.textContent = i18n_a11y.openNavText;
         navMobileOpenButton.classList.add('nav-mobile-open', 'icon-menu');
-        const navInner = document.querySelector('.navigation-bar-inner');
-        if (navInner) navInner.prepend(navMobileOpenButton);
+        const navInner = document.querySelector('#header > .inside');
+        if (navInner) {
+            navInner.prepend(navMobileOpenButton);
+        }
         setupOpenButton(navMobileOpenButton);
     }
 

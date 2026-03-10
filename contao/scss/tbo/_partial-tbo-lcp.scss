@@ -1,6 +1,7 @@
 //zunächst wird unsere custom-Version von bootstrap importiert
-@import "bootstrap-tbo-lcp";
-@import "navigation-bar";
+@import "fonts-tbo";
+@import "tbo/bootstrap-tbo-lcp";
+@import "tbo/navigation-bar";
 
 /******
 Jetzt definieren wir für unser Layout spezifische Bereiche und können Bootstrap-Variablen, Mixins und Funktionen nutzen. 
@@ -76,4 +77,31 @@ footer {
 
 /**** 
 Weitere Abschnitte: Siehe main.scss
-}****/
+****/
+
+#nav-mobile {
+	display: none; // Standardmäßig ausblenden (wird per JS .is-enabled aktiviert)
+
+	@include media-breakpoint-up(nav) {
+		display: none !important;
+	}
+}
+
+.nav-mobile-open {
+	display: none;
+	background: none;
+	border: 0;
+	padding: 0.5rem;
+	font-size: 1.5rem;
+	line-height: 1;
+	color: inherit;
+	cursor: pointer;
+
+	@include media-breakpoint-down(nav) {
+		display: block;
+	}
+
+	&::before {
+		@extend .icon-menu !optional;
+	}
+}

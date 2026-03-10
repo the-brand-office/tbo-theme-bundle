@@ -1,0 +1,23 @@
+/* ==========================================================================
+   TBO Mixins & Functions
+   ========================================================================== */
+
+
+
+
+/**
+ * icon() mixin
+ * Basic icon styling
+ */
+@mixin icon($content: "", $font-size: 100%, $line-height: 1) {
+    display: inline-block;
+    font-family: "#{$icon-font-name}" !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: $line-height;
+    font-size: $font-size;
+    content: $content;
+    vertical-align: middle;
+}

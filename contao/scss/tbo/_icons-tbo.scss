@@ -1,0 +1,27 @@
+/**
+ * Global Icon Classes (Mapping)
+ * Maps common .icon-* classes to TBO Icons (Bootstrap Icons Unicode)
+ * Source of Unicodes: https://icons.getbootstrap.com/
+ */
+
+.icon-menu,
+.icon-cross,
+.icon-chevron-down {
+    display: inline-block;
+    font-family: "#{$icon-font-name}" !important;
+    font-style: normal;
+    font-weight: normal !important;
+    line-height: 1;
+}
+
+.icon-menu::before {
+    content: "\eb43"; // Material: menu
+}
+
+.icon-cross::before {
+    content: "\e996"; // Material: clear
+}
+
+.icon-chevron-down::before {
+    content: "\eb41"; // Material: expand_more
+}

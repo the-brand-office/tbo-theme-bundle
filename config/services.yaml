@@ -13,3 +13,9 @@ services:
 
     Tbo\TboThemeBundle\Twig\TboExtension:
         tags: ["twig.extension"]
+
+    Tbo\TboThemeBundle\EventListener\DataContainer\SettingsFontListener:
+        public: true
+        arguments:
+            $projectDir: "%kernel.project_dir%"
+            $contaoCoreLogger: "@monolog.logger.contao.error"

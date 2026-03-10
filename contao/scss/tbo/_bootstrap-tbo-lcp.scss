@@ -1,7 +1,7 @@
 //@import "mixins/banner";
 //@include bsBanner("");
 
-@import "../variables-custom";
+@import "variables-custom";
 
 // scss-docs-start import-stack
 // Configuration
@@ -11,6 +11,8 @@
 @import "bootstrap/maps";
 @import "bootstrap/mixins";
 @import "bootstrap/utilities";
+@import "icons-tbo";
+@import "../custom/icons-custom";
 
 // Layout & components
 @import "bootstrap/root";

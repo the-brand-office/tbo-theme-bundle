@@ -46,7 +46,7 @@
 		<?php 
 		
 		// --- PHP-LOGIK ZUR ERMITTLUNG DES CACHE-BUSTERS ---
-		$path = 'files/theme/css/main.css';
+		$path = 'files/theme/css/custom-main.css';
 		$versionQuery = '';
 
 		// FilesModel anhand des Pfades suchen
@@ -60,12 +60,10 @@
 		// Der endgültige, gebustete Pfad (wird für das Twig-Rendering verwendet)
 		$bustedPath = $path . $versionQuery;
 		// --- ENDE PHP-LOGIK ---
-		
-		
 		?>
 		
 		<link rel="preload" as="style" href="<?= $bustedPath ?>" onload="this.onload=null;this.rel='stylesheet'">
-		<noscript><link rel="stylesheet" href="$bustedPath"></noscript>
+		<noscript><link rel="stylesheet" href="<?= $bustedPath ?>"></noscript>
    <?php $this->endblock(); ?>
    
          

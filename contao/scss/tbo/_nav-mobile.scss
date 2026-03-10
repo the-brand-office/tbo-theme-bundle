@@ -1,0 +1,171 @@
+/* ==========================================================================
+   TBO Mobile Navigation
+   ========================================================================== */
+
+/* 2. Off-Canvas behavior */
+#nav-mobile.is-enabled {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zindex-offcanvas;
+    width: 100%;
+    max-width: 300px;
+    background-color: var(--bs-body-bg);
+    box-shadow: $offcanvas-box-shadow;
+
+    // Modern Off-Canvas Transition
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out, visibility 0s 0.3s;
+    visibility: hidden;
+
+    &.is-active {
+        transform: translateX(0);
+        visibility: visible;
+        transition: transform 0.3s ease-out, visibility 0s 0s;
+    }
+}
+
+/* Overlay for body when menu is active */
+body.navi-active::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: $zindex-offcanvas - 1;
+    backdrop-filter: blur(2px);
+    opacity: 1;
+}
+
+body.navi-active {
+    overflow: hidden;
+}
+
+/* 3. Close Button */
+.nav-mobile-close {
+    background: none;
+    border: 0;
+    padding: 1rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--bs-body-color);
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    font-style: normal;
+
+    &::before {
+        @extend .icon-cross !optional;
+    }
+}
+
+/* 4. Menu Wrapper & Lists */
+#nav-mobile .menu-wrapper {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding-top: 4rem; // Platz für den Close-Button
+}
+
+#nav-mobile {
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        ul {
+            background-color: var(--bs-tertiary-bg);
+            display: none; // Gesteuert über .expanded-icon
+        }
+    }
+
+    li {
+        position: relative;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    a,
+    span,
+    strong {
+        display: block;
+        padding: 0.875rem 1.25rem;
+        color: inherit;
+        text-decoration: none;
+        transition: background-color 0.2s;
+
+        &:hover,
+        &:focus-visible {
+            background-color: var(--bs-tertiary-bg);
+        }
+
+        &.active,
+        &.trail {
+            font-weight: $font-weight-bold;
+            color: var(--bs-primary);
+
+            &::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                background-color: var(--bs-primary);
+            }
+        }
+    }
+
+    /* Submenu nesting offsets */
+    .level_2 a,
+    .level_2 span,
+    .level_2 strong {
+        padding-left: 2rem;
+    }
+
+    .level_3 a,
+    .level_3 span,
+    .level_3 strong {
+        padding-left: 3rem;
+    }
+}
+
+/* 5. Submenu Toggle Buttons */
+.nav-mobile-expand {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3.25rem;
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    color: inherit;
+    z-index: 5;
+
+    &::before {
+        @extend .icon-chevron-down !optional;
+        transition: transform 0.2s;
+        display: block;
+    }
+}
+
+/* Expanded state logic */
+li.expanded-icon {
+    >ul {
+        display: block;
+    }
+
+    >.nav-mobile-expand::before {
+        transform: rotate(180deg);
+    }
+}
